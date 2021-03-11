@@ -127,3 +127,106 @@ End Sub
 
 
 
+Sub AllStocksAnalysis()
+  Worksheets("All Stocks Analysis").Activate
+  
+  Range("A1").Value = "All Stocks (2018)"
+  
+  'create header rows
+  Cells(3, 1).Value = "Ticker"
+  Cells(3, 2).Value = "Total Daily Volume"
+  Cells(3, 3).Value = "Return"
+  
+  'Array to hold 12 Tickers
+   Dim tickers(12) As String
+   
+   'Assigning each Ticker to an element in the array
+      
+    tickers(0) = "AY"
+    tickers(1) = "CSIQ"
+    tickers(2) = "DQ"
+    tickers(3) = "ENPH"
+    tickers(4) = "FSLR"
+    tickers(5) = "HASI"
+    tickers(6) = "JKS"
+    tickers(7) = "RUN"
+    tickers(8) = "SEDG"
+    tickers(9) = "SPWR"
+    tickers(10) = "TERP"
+    tickers(11) = "VSLR"
+    
+    For i = 0 To 11
+
+        ticker = tickers(i)
+
+        'Do stuff with ticker
+
+   Next i
+   
+    
+    Worksheets("skill drill").Activate
+    
+         For i = 1 To 10
+           'a line of code here will run 10 times
+           Cells(i, 1).Value = 1
+            
+            For j = 2 To 10
+            'a line of code will run 5 times
+            
+             Cells(i, j).Value = 1
+            
+            
+            Next j
+           
+        Next i
+        
+        
+    Worksheets("skilldrill2").Activate
+    
+        'define variables
+        rowNumber = 3
+        colNumber = 5
+        
+        For i = 1 To rowNumber
+           'a line of code here will run 10 times
+           Cells(i, 1).Value = 1
+            
+            For j = 2 To colNumber
+            'a line of code will run 5 times
+            
+             Cells(i, j).Value = 1
+            
+            
+            Next j
+           
+        Next i
+        
+    Worksheets("skilldrill3").Activate
+          'define variables
+          rowNumber = 4
+          colNumber = 8
+          
+          
+        For i = 1 To rowNumber
+           'a line of code here will run 10 times
+           Cells(i, 1).Value = i + 1
+            
+            For j = 2 To colNumber
+            'a line of code will run 5 times
+            
+             Cells(i, j).Value = i + j
+        
+            
+        Next j
+    
+    
+    Next i
+        
+        
+    'clear cells from stackoverflow https://stackoverflow.com/questions/31884818/clear-contents-and-formatting-of-an-excel-cell-with-a-single-command
+    
+    Sheets("skill drill").Range("B4:I7").Clear
+End Sub
+
+
+
