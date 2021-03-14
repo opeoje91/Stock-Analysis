@@ -276,15 +276,10 @@ Sub nesteddrill()
         
                 ' Use the modulus function to determine if a number is divisible by 2 (even number)
                 If (i + j) Mod 2 = 0 Then
-               'a line of code here will evaluate true
-                    Cells(i, j).Value = "True"
-                        'Change cell color to red
+               'a line of code here will Change cell color to Green
                          Cells(i, j).Interior.Color = vbGreen
                 Else
-                'a line of code will evaluate False
-                    Cells(i, j).Value = "False"
-                    
-                        'Change cell color to red
+                'a line of code will Change cell color to red
                          Cells(i, j).Interior.Color = vbRed
            End If
            
