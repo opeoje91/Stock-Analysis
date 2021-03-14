@@ -39,196 +39,40 @@ Sub DQRangeAnalysis()
     Range("A1").Value = "DAQO (Ticker: DQ)"
 End Sub
 
-  
-
-Sub DQAnalysis()
-
- Worksheets("DQ Analysis").Activate
+ ### 030821###
+Sub DQANALYSIS()
+    Worksheets("DQ ANALYSIS").Activate
     
     Range("A1").Value = "DAQO (Ticker: DQ)"
-    
+
+    'Create a header row
     Cells(3, 1).Value = "Year"
     Cells(3, 2).Value = "Total Daily Volume"
     Cells(3, 3).Value = "Return"
-    
-   
-    Worksheets("2018").Activate
-    
-    For i = rowStart To rowEnd
-    'increase totalVolume if ticker is "DQ"
-    If Cells(i, 1).Value = "DQ" Then
-        totalVolume = totalVolume + Cells(i, 8).Value
-    End If
 
-    Next i
-    Worksheets("DQ Analysis").Activate
-    
-    Cells(4, 1).Value = 2018
-    Cells(4, 2).Value = totalVolume
-
-    
-
-End Sub
-
-
-
-Sub DQAnalysis()
-
- Worksheets("DQ Analysis").Activate
-    
-    Range("A1").Value = "DAQO (Ticker: DQ)"
-    
-    Cells(3, 1).Value = "Year"
-    Cells(3, 2).Value = "Total Daily Volume"
-    Cells(3, 3).Value = "Return"
-    
-   
-    Worksheets("2018").Activate
-    
-    'set initial volume to zero
+    rowStart = 2
+    rowEnd = 3013
     totalVolume = 0
 
-    Dim startingPrice As Double
-    Dim endingPrice As Double
+    For i = rowStart To rowEnd
+    'increase totalVolume
+    totalVolume = totalVolume + Cells(i, 8).Value
 
-    'find the number of rows to loop over
-    RowCount = Cells(Rows.Count, "A").End(xlUp).Row
+    Next i
+    Worksheets("2018").Activate
 
-    'loop over all the rows
-    For i = 2 To RowCount
-
+    For i = rowStart To rowEnd
+        'increase totalVolume if ticker is "DQ"
         If Cells(i, 1).Value = "DQ" Then
-    'increase totalVolume by the value in the current row
             totalVolume = totalVolume + Cells(i, 8).Value
-
-        End If
-        
-        If Cells(i - 1, 1).Value <> "DQ" And Cells(i, 1).Value = "DQ" Then
-
-            startingPrice = Cells(i, 6).Value
-
-        End If
-        
-        If Cells(i + 1, 1).Value <> "DQ" And Cells(i, 1).Value = "DQ" Then
-
-            endingPrice = Cells(i, 6).Value
-
         End If
     Next i
+    'MsgBox (totalVolume)
+
     Worksheets("DQ Analysis").Activate
-    
     Cells(4, 1).Value = 2018
     Cells(4, 2).Value = totalVolume
-    Cells(4, 3).Value = (endingPrice / startingPrice) - 1
-
-    
-
 End Sub
-
-
-
-Sub AllStocksAnalysis()
-  Worksheets("All Stocks Analysis").Activate
-  
-  Range("A1").Value = "All Stocks (2018)"
-  
-  'create header rows
-  Cells(3, 1).Value = "Ticker"
-  Cells(3, 2).Value = "Total Daily Volume"
-  Cells(3, 3).Value = "Return"
-  
-  'Array to hold 12 Tickers
-   Dim tickers(12) As String
-   
-   'Assigning each Ticker to an element in the array
-      
-    tickers(0) = "AY"
-    tickers(1) = "CSIQ"
-    tickers(2) = "DQ"
-    tickers(3) = "ENPH"
-    tickers(4) = "FSLR"
-    tickers(5) = "HASI"
-    tickers(6) = "JKS"
-    tickers(7) = "RUN"
-    tickers(8) = "SEDG"
-    tickers(9) = "SPWR"
-    tickers(10) = "TERP"
-    tickers(11) = "VSLR"
-    
-    For i = 0 To 11
-
-        ticker = tickers(i)
-
-        'Do stuff with ticker
-
-   Next i
-   
-    
-    Worksheets("skill drill").Activate
-    
-         For i = 1 To 10
-           'a line of code here will run 10 times
-           Cells(i, 1).Value = 1
-            
-            For j = 2 To 10
-            'a line of code will run 5 times
-            
-             Cells(i, j).Value = 1
-            
-            
-            Next j
-           
-        Next i
-        
-        
-    Worksheets("skilldrill2").Activate
-    
-        'define variables
-        rowNumber = 3
-        colNumber = 5
-        
-        For i = 1 To rowNumber
-           'a line of code here will run 10 times
-           Cells(i, 1).Value = 1
-            
-            For j = 2 To colNumber
-            'a line of code will run 5 times
-            
-             Cells(i, j).Value = 1
-            
-            
-            Next j
-           
-        Next i
-        
-    Worksheets("skilldrill3").Activate
-          'define variables
-          rowNumber = 4
-          colNumber = 8
-          
-          
-        For i = 1 To rowNumber
-           'a line of code here will run 10 times
-           Cells(i, 1).Value = i + 1
-            
-            For j = 2 To colNumber
-            'a line of code will run 5 times
-            
-             Cells(i, j).Value = i + j
-        
-            
-        Next j
-    
-    
-    Next i
-        
-        
-    'clear cells from stackoverflow https://stackoverflow.com/questions/31884818/clear-contents-and-formatting-of-an-excel-cell-with-a-single-command
-    
-    Sheets("skill drill").Range("B4:I7").Clear
-End Sub
-
-
 
 
 
@@ -325,4 +169,138 @@ Sub AllStocksAnalysis()
     Next i
    
 End Sub
+
+Sub formatAllStocksAnalysisTable()
+
+    'Formatting
+    Worksheets("All Stocks Analysis").Activate
+    
+     'Select the header range and make the text bold
+     Range("A3:C3").Font.Bold = True
+     
+     'add a border to the bottom edge
+     Range("A3:C3").Borders(xlEdgeBottom).LineStyle = xlContinuous
+
+    'Select the header range and make the text bigger
+     Range("A3:C3").Font.FontStyle = "Bold Italic"
+     
+     'Select the header range and make the text color "Purple"
+      Range("A3:C3").Font.Color = RGB(192, 32, 255)
+      
+      'Add one more digit of precision to the return percentage
+      Range("B4:B15").NumberFormat = "#,##0"
+         
+    
+     'make a single-digit percentage for the return
+     Range("C4:C15").NumberFormat = "0.0%"
+    
+      'change the width of a column to auto-fit the data
+      Columns("B").AutoFit
+        
+        'set the color of the cell at row 4, column 3 to green,
+        Cells(4, 3).Interior.Color = vbGreen
+        
+        'clear the cell at row 4, column 3
+        Cells(4, 3).Interior.Color = xlNone
+        
+        'color the cell green, create an if-then block that checks if the value is greater than zero.
+        If Cells(4, 3) > 0 Then
+             'Color the cell green
+              Cells(4, 3).Interior.Color = vbGreen
+        
+        'Then, add an elseif block to check if the cell is less than zero
+        
+            ElseIf Cells(4, 3) < 0 Then
+
+                'Color the cell red
+                Cells(4, 3).Interior.Color = vbRed
+
+        'add an else block to clear the cell if the value is neither positive nor negative.
+        
+             Else
+                 'Clear the cell color
+                    Cells(4, 3).Interior.Color = xlNone
+                    
+        End If
+                    
+        'create two new variables to hold dataRowStart and dataRowEnd
+            
+            dataRowStart = 4
+            dataRowEnd = 15
+            For i = dataRowStart To dataRowEnd
+
+                'replace the row number with the iterator
+                ' check if the cell is greater than zero. If so, change the color to green
+                If Cells(i, 3) > 0 Then
+
+                    'Change cell color to green
+                     Cells(i, 3).Interior.Color = vbGreen
+                     
+            
+                'Then, check if the cell is less than zero. If so, change the color to red
+                ElseIf Cells(i, 3) < 0 Then
+
+                     'Change cell color to red
+                     Cells(i, 3).Interior.Color = vbRed
+                     
+                'if neither condition is true, clear the cell color.
+                 Else
+
+                         'Clear the cell color
+                         Cells(i, 3).Interior.Color = xlNone
+    
+    
+    
+    
+                 End If
+                
+        Next i
+
+
+   
+
+End Sub
+
+Sub nesteddrill()
+
+    Worksheets("nested drill").Activate
+    
+        'define variables
+        rowNumber = 8
+        colNumber = 8
+        
+        'Create a for loop from 1 to 8
+        For i = 1 To rowNumber
+            ' Use the modulus function to determine if a number is not divisible by 2 (odd number)
+            For j = 1 To colNumber
+        
+                ' Use the modulus function to determine if a number is divisible by 2 (even number)
+                If (i + j) Mod 2 = 0 Then
+               'a line of code here will evaluate true
+                    Cells(i, j).Value = "True"
+                        'Change cell color to red
+                         Cells(i, j).Interior.Color = vbGreen
+                Else
+                'a line of code will evaluate False
+                    Cells(i, j).Value = "False"
+                    
+                        'Change cell color to red
+                         Cells(i, j).Interior.Color = vbRed
+           End If
+           
+        Next j
+        
+      Next i
+
+
+End Sub
+
+
+
+
+
+
+
+
+
 
